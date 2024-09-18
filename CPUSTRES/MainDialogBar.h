@@ -1,3 +1,7 @@
+/**
+ * MainDialogBar.h
+*/
+
 #pragma once
 
 class CChildView;
@@ -6,22 +10,20 @@ class CChildView;
 
 class CMainDialogBar : public CDialogBar
 {
-	DECLARE_DYNAMIC(CMainDialogBar)
+    DECLARE_DYNAMIC(CMainDialogBar)
 
 public:
-	CMainDialogBar();
-	virtual ~CMainDialogBar();
+    CMainDialogBar();
+    virtual ~CMainDialogBar();
 
-	void InitControls(CChildView*);
+    void InitControls(CChildView *);
 
 protected:
-	CChildView* m_pView;
+    CChildView *m_pView;
 
-	void OnSetActivityLevel(UINT id);
-	void OnUpdateSetActivityLevel(CCmdUI* pCmdUI);
+    void OnSetActivityLevel(UINT id);
+    void OnUpdateSetActivityLevel(CCmdUI *pCmdUI);
 
-	DECLARE_MESSAGE_MAP()
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    DECLARE_MESSAGE_MAP()
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 };
-
-

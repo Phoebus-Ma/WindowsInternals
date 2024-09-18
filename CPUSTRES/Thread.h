@@ -1,76 +1,87 @@
+/**
+ * Thread.h
+*/
 
 #pragma once
 
-enum class ActivityLevel {
-	None = 0,
-	Low = 1,
-	Medium = 2,
-	Busy = 3,
-	Maximum = 4
+enum class ActivityLevel
+{
+    None    = 0,
+    Low     = 1,
+    Medium  = 2,
+    Busy    = 3,
+    Maximum = 4
 };
 
 // CThread command target
 
-class CThread {
+class CThread
+{
 public:
-	CThread();
-	virtual ~CThread();
+    CThread();
+    virtual ~CThread();
 
-	DWORD GetThreadId() const {
-		return m_ID;
-	}
+    DWORD GetThreadId() const
+    {
+        return m_ID;
+    }
 
-	int GetPriority() const {
-		return ::GetThreadPriority(m_hThread);
-	}
+    int GetPriority() const
+    {
+        return ::GetThreadPriority(m_hThread);
+    }
 
-	void SetProcessIndex(int index) {
-		m_IndexInProcess = index;
-	}
+    void SetProcessIndex(int index)
+    {
+        m_IndexInProcess = index;
+    }
 
-	int GetProcessIndex() const {
-		return m_IndexInProcess;
-	}
+    int GetProcessIndex() const
+    {
+        return m_IndexInProcess;
+    }
 
-	ActivityLevel GetActivityLevel() const {
-		return m_ActivityLevel;
-	}
+    ActivityLevel GetActivityLevel() const
+    {
+        return m_ActivityLevel;
+    }
 
-	bool IsActive() const {
-		return m_Active;
-	}
+    bool IsActive() const
+    {
+        return m_Active;
+    }
 
-	void SetPriority(int priority) {
-		::SetThreadPriority(m_hThread, priority);
-	}
-	
-	void SetAfinity(DWORD_PTR affinity);
-	DWORD_PTR GetAffinity() const;
+    void SetPriority(int priority)
+    {
+        ::SetThreadPriority(m_hThread, priority);
+    }
 
-	DWORD SetIdealCPU(int n);
-	int GetIdealCPU() const;
+    void SetAfinity(DWORD_PTR affinity);
+    DWORD_PTR GetAffinity() const;
 
-	long long GetCPUTime(const LARGE_INTEGER& frequency) const;
+    DWORD SetIdealCPU(int n);
+    int GetIdealCPU() const;
 
-	void Terminate();
-	void Suspend();
-	void Resume();
-	void SetActivityLevel(ActivityLevel level) {
-		m_ActivityLevel = level;
-	}
+    long long GetCPUTime(const LARGE_INTEGER &frequency) const;
 
-	static DWORD CALLBACK ThreadFunction(PVOID);
-	DWORD CALLBACK ThreadFunction();
+    void Terminate();
+    void Suspend();
+    void Resume();
+    void SetActivityLevel(ActivityLevel level)
+    {
+        m_ActivityLevel = level;
+    }
+
+    static DWORD CALLBACK ThreadFunction(PVOID);
+    DWORD CALLBACK ThreadFunction();
 
 private:
-	HANDLE m_hThread, m_hTerminate;
-	DWORD m_ID;
-	int m_IndexInProcess;
-	ActivityLevel m_ActivityLevel = ActivityLevel::Low;
-	bool m_Active = false;
-	DWORD_PTR m_Affinity;
-	mutable long long m_LastCpu = 0;
-	mutable LARGE_INTEGER m_LastCounter;
+    HANDLE m_hThread, m_hTerminate;
+    DWORD m_ID;
+    int m_IndexInProcess;
+    ActivityLevel m_ActivityLevel = ActivityLevel::Low;
+    bool m_Active = false;
+    DWORD_PTR m_Affinity;
+    mutable long long m_LastCpu = 0;
+    mutable LARGE_INTEGER m_LastCounter;
 };
-
-

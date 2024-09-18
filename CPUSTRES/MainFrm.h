@@ -1,58 +1,58 @@
-
-// MainFrm.h : interface of the CMainFrame class
-//
+/**
+ * MainFrm.h
+ * 
+ * interface of the CMainFrame class.
+*/
 
 #pragma once
 #include "ChildView.h"
 
-class CMainFrame : public CFrameWnd {
+class CMainFrame : public CFrameWnd
+{
 
 public:
-	CMainFrame();
+    CMainFrame();
+
 protected:
-	DECLARE_DYNAMIC(CMainFrame)
+    DECLARE_DYNAMIC(CMainFrame)
 
-	// Attributes
+    // Attributes
 public:
+    // Operations
+public:
+    // Overrides
+public:
+    virtual BOOL PreCreateWindow(CREATESTRUCT &cs);
+    virtual BOOL OnCmdMsg(UINT nID, int nCode, void *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo);
 
-	// Operations
+    // Implementation
 public:
-
-	// Overrides
-public:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo);
-
-	// Implementation
-public:
-	virtual ~CMainFrame();
+    virtual ~CMainFrame();
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext &dc) const;
 #endif
 
-	static PCWSTR PriorityClassToString(int priority);
-	static int PriorityClassToID(int priority);
+    static PCWSTR PriorityClassToString(int priority);
+    static int PriorityClassToID(int priority);
 
-protected:  // control bar embedded members
-	CDialogBar  m_wndDlgBar;
-	CChildView	m_wndView;
-	CStatusBar m_StatusBar;
+protected: // control bar embedded members
+    CDialogBar m_wndDlgBar;
+    CChildView m_wndView;
+    CStatusBar m_StatusBar;
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnSetFocus(CWnd *pOldWnd);
-	DECLARE_MESSAGE_MAP()
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg void OnSetFocus(CWnd *pOldWnd);
+    DECLARE_MESSAGE_MAP()
 
-	void SetProcessAffinityText();
+    void SetProcessAffinityText();
 
-	afx_msg void OnOptionsAlwaysontop();
-	afx_msg void OnUpdateOptionsAlwaysontop(CCmdUI *pCmdUI);
-	afx_msg void OnProcessAffinity();
-	void OnChangePriorityClass(UINT id);
-	void OnUpdateChangePriorityClass(CCmdUI* pCmdUI);
-	void SetProcessPriorityClassText();
+    afx_msg void OnOptionsAlwaysontop();
+    afx_msg void OnUpdateOptionsAlwaysontop(CCmdUI *pCmdUI);
+    afx_msg void OnProcessAffinity();
+    void OnChangePriorityClass(UINT id);
+    void OnUpdateChangePriorityClass(CCmdUI *pCmdUI);
+    void SetProcessPriorityClassText();
 };
-
-

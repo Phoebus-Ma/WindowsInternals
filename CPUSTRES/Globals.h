@@ -1,12 +1,16 @@
+/**
+ * Globals.h
+*/
+
 #pragma once
 
-class CGlobals {
+class CGlobals
+{
 public:
-	static int GetProcessorCount();
+    static int GetProcessorCount();
 
-	static std::vector<DWORD> EnumerateThreads(DWORD pid);
+    static std::vector<DWORD> EnumerateThreads(DWORD pid);
 
 private:
-	static int s_Processors;
+    static int s_Processors;
 };
-
